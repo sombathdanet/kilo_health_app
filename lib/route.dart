@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project/feature/desboard/desboard_screen.dart';
-import 'package:project/feature/home/presentation/detail/health_detail.dart';
+import 'package:project/feature/health/presentation/detail/health_detail.dart';
 import 'package:project/feature/message/message_detail_screen/message_detail.dart';
-import 'package:project/feature/search_screen/search_screen.dart';
-import 'package:project/feature/search_screen/submit_screen/onsubmit_screen.dart';
+import 'package:project/feature/health/presentation/search_screen.dart/search_screen.dart';
+import 'package:project/feature/health/presentation/submit_screen/onsubmit_screen.dart';
 
 class AppRoutes {
   static const String desboard = '/';

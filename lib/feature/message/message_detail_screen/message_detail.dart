@@ -3,8 +3,8 @@ import 'package:project/component/button/xicon_button.dart';
 import 'package:project/component/xlist_veritical.dart';
 import 'package:project/core/view/padding.dart';
 import 'package:project/data/fake_data.dart';
+import 'package:project/feature/health/presentation/search_screen.dart/component/search_textfield.dart';
 import 'package:project/feature/message/component/chat.dart';
-import 'package:project/feature/search_screen/component/search_textfield.dart';
 
 class MessageDetailScreen extends StatelessWidget {
   const MessageDetailScreen({super.key});

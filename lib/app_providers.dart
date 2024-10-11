@@ -1,24 +1,21 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:project/core/local/local_mananger.dart';
 import 'package:project/core/network/network_info.dart';
-import 'package:project/core/network/networkdata_source.dart';
 import 'package:project/feature/desboard/desbord_provider.dart';
-import 'package:project/feature/home/data/local/home_local_source.dart';
-import 'package:project/feature/home/data/network/home_network_data_source.dart';
-import 'package:project/feature/home/data/repository/home_repository_impl.dart';
-import 'package:project/feature/home/domain/home_resposiory.dart';
-import 'package:project/feature/home/domain/usecase/get_home_grid_usecase.dart';
-import 'package:project/feature/home/presentation/detail/health_detail_provider.dart';
-import 'package:project/feature/home/presentation/home/home_provide.dart';
-import 'package:project/feature/search_screen/data/network/search_network_data_source.dart';
-import 'package:project/feature/search_screen/data/repository/search_repository_impl.dart';
-import 'package:project/feature/search_screen/domain/repository/search_repository.dart';
-import 'package:project/feature/search_screen/domain/usecase/get_category_usecase.dart';
-import 'package:project/feature/search_screen/domain/usecase/search_usecase.dart';
-import 'package:project/feature/search_screen/search_screen_provider.dart';
-import 'package:project/feature/search_screen/submit_screen/submit_screen_provider.dart';
+import 'package:project/feature/health/data/local/home_local_source.dart';
+import 'package:project/feature/health/data/network/home_network_data_source.dart';
+import 'package:project/feature/health/data/repository/home_repository_impl.dart';
+import 'package:project/feature/health/domain/home_resposiory.dart';
+import 'package:project/feature/health/domain/usecase/get_home_grid_usecase.dart';
+import 'package:project/feature/health/domain/usecase/search_usecase.dart';
+import 'package:project/feature/health/presentation/home/home_provide.dart';
+import 'package:project/feature/health/presentation/submit_screen/submit_screen_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'core/network/networkdata_source.dart';
+import 'feature/health/domain/usecase/get_category_usecase.dart';
+import 'feature/health/presentation/detail/health_detail_provider.dart';
+import 'feature/health/presentation/search_screen.dart/search_screen_provider.dart';
 
 class AppProvider {
   static List<SingleChildWidget> bind() {
@@ -49,13 +46,14 @@ class AppProvider {
       ),
       Provider<GetHomeGridUseCase>(
         create: (context) => GetHomeGridUseCase(
-            context.read<HomeRepository>(), context.read<NetWorkInfo>()),
+          context.read<HomeRepository>(),
+          context.read<NetWorkInfo>(),
+        ),
       ),
       ChangeNotifierProvider(
         create: (context) => HomeProvider(
           context.read<HomeRepository>(),
           context.read<GetHomeGridUseCase>(),
-        
         ),
       ),
       ChangeNotifierProvider(
@@ -68,21 +66,13 @@ class AppProvider {
       ),
       // Search Provider
       Provider(
-        create: (_) => SearchNetWorkDataSource(),
-      ),
-      Provider<SearchReposiory>(
-        create: (context) => SearchRepositoryImpl(
-          context.read<SearchNetWorkDataSource>(),
-        ),
-      ),
-      Provider(
         create: (context) => SearchUseCase(
-          context.read<SearchReposiory>(),
+          context.read<HomeRepository>(),
         ),
       ),
       Provider(
         create: (context) => GetCategoryUsecase(
-          context.read<SearchReposiory>(),
+          context.read<HomeRepository>(),
         ),
       ),
       ChangeNotifierProvider(

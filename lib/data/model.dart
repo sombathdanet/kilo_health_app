@@ -11,6 +11,17 @@ class SearchModel {
   });
 }
 
+class SearchItemModel {
+  final bool isAlreadyLoad;
+  final List<SearchModel> item;
+  final String category;
+  SearchItemModel({
+    required this.category,
+    this.isAlreadyLoad = false,
+    required this.item,
+  });
+}
+
 // Message Detail Screen
 class MessageDetailModel {
   final String thumnail;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/component/ximage_provider.dart';
-import 'package:project/feature/home/domain/model/home_grid_item_model.dart';
+import 'package:project/feature/health/domain/model/home_grid_item_model.dart';
 import 'package:project/theme/text_style/text_style.dart';
 import 'package:project/core/view/padding.dart';
 
