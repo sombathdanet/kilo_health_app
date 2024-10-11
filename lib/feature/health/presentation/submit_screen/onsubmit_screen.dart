@@ -36,38 +36,40 @@ class _SubmitSearchScreenState extends State<SubmitSearchScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<SubmitScreenProvider>(context);
-    return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(
-            height: XPadding.extraLarge,
-          ),
-          Row(
-            children: [
-              XIconButton(
-                iconData: Icons.arrow_back,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: XPadding.extraLarge),
-                  child: SearchTextField(
-                    textEditingController: textEditingController,
-                    color: Theme.of(context).cardColor,
-                    suffixIcon: const XIconButton(iconData: Icons.mic),
-                    onSubMit: (value) {
-                      provider.search(query: value);
-                    },
-                    onChange: (value) {},
-                  ),
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            const SizedBox(
+              height: XPadding.extraLarge,
+            ),
+            Row(
+              children: [
+                XIconButton(
+                  iconData: Icons.arrow_back,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                 ),
-              )
-            ],
-          ),
-          _buildList(provider: provider)
-        ],
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: XPadding.extraLarge),
+                    child: SearchTextField(
+                      textEditingController: textEditingController,
+                      color: Theme.of(context).cardColor,
+                      suffixIcon: const XIconButton(iconData: Icons.mic),
+                      onSubMit: (value) {
+                        provider.search(query: value);
+                      },
+                      onChange: (value) {},
+                    ),
+                  ),
+                )
+              ],
+            ),
+            _buildList(provider: provider)
+          ],
+        ),
       ),
     );
   }

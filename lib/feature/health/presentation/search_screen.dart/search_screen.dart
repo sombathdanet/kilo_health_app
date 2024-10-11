@@ -78,6 +78,11 @@ class _SearchScreenState extends State<SearchScreen> {
               onChangeIndex: (index) {
                 provider.changeTap(index);
               },
+              isLoading: provider.uiState.filterLoading,
+              listener: (index) {
+                provider
+                    .filterCategory(provider.uiState.categoryItem[index].name);
+              },
               content: Padding(
                 padding: const EdgeInsets.only(top: XPadding.large),
                 child: _buildList(provider: provider),

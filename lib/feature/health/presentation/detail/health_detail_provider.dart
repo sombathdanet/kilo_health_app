@@ -1,6 +1,5 @@
 import 'package:project/core/base/base_provider.dart';
 import 'package:project/core/network/error_handler.dart';
-import 'package:project/core/network/failure.dart';
 import 'package:project/feature/health/domain/home_resposiory.dart';
 import 'package:project/feature/health/presentation/detail/health_detail_state.dart';
 

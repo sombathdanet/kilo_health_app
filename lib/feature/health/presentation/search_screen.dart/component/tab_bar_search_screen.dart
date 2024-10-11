@@ -9,6 +9,8 @@ class XSearchTabBar extends StatefulWidget {
   final Widget content;
   final List<CategoryModel> categoryItem;
   final Color color;
+  final bool isLoading;
+  final Function(int index) listener;
   const XSearchTabBar({
     super.key,
     this.currentIndex = 0,
@@ -16,6 +18,8 @@ class XSearchTabBar extends StatefulWidget {
     required this.content,
     required this.categoryItem,
     this.color = Colors.grey,
+    this.isLoading = false,
+    required this.listener,
   });
 
   @override
@@ -24,7 +28,6 @@ class XSearchTabBar extends StatefulWidget {
 
 class _XTabBarState extends State<XSearchTabBar> with TickerProviderStateMixin {
   late final TabController _tabController;
-  bool _isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -33,15 +36,8 @@ class _XTabBarState extends State<XSearchTabBar> with TickerProviderStateMixin {
       vsync: this,
     );
     _tabController.addListener(() {
-      setState(() {
-        _isLoading = true;
-      });
       widget.onChangeIndex(_tabController.index);
-      Future.delayed(const Duration(seconds: 1)).then((value) {
-        setState(() {
-          _isLoading = false;
-        });
-      });
+      widget.listener(_tabController.index);
     });
   }
 
@@ -84,7 +80,7 @@ class _XTabBarState extends State<XSearchTabBar> with TickerProviderStateMixin {
             ),
           ),
         ),
-        _isLoading
+        widget.isLoading
             ? Expanded(
                 child: Center(
                 child: CircularProgressIndicator(
