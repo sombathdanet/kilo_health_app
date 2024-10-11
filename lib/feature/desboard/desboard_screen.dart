@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:project/feature/desboard/bottom_nav_item.dart';
 import 'package:project/feature/desboard/desbord_provider.dart';
-import 'package:project/feature/home/presentation/home/home_screen.dart';
+import 'package:project/feature/health/presentation/home/home_screen.dart';
 import 'package:project/feature/message/message_screen.dart';
 import 'package:project/feature/notification/notification_screen.dart';
 import 'package:project/feature/profile/profile_screen.dart';
