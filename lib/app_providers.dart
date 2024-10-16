@@ -1,6 +1,7 @@
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:project/core/local/local_mananger.dart';
 import 'package:project/core/network/network_info.dart';
+import 'package:project/core/service/image_picker.dart';
 import 'package:project/feature/desboard/desbord_provider.dart';
 import 'package:project/feature/health/data/local/home_local_source.dart';
 import 'package:project/feature/health/data/network/home_network_data_source.dart';
@@ -10,6 +11,8 @@ import 'package:project/feature/health/domain/usecase/get_home_grid_usecase.dart
 import 'package:project/feature/health/domain/usecase/search_usecase.dart';
 import 'package:project/feature/health/presentation/home/home_provide.dart';
 import 'package:project/feature/health/presentation/submit_screen/submit_screen_provider.dart';
+import 'package:project/feature/message/message_provider.dart';
+import 'package:project/feature/message/message_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'core/network/networkdata_source.dart';
@@ -20,6 +23,9 @@ import 'feature/health/presentation/search_screen.dart/search_screen_provider.da
 class AppProvider {
   static List<SingleChildWidget> bind() {
     return [
+      Provider<ImagePickerService>(
+        create: (_) => ImagePickerServiceImp(),
+      ),
       Provider(
         create: (_) => NetWorkDataSource.instance,
       ),
@@ -86,6 +92,12 @@ class AppProvider {
           context.read<SearchUseCase>(),
         ),
       ),
+      // MessageProvider -------------------
+      ChangeNotifierProvider(
+        create: (context) => MessageProvider(
+          context.read<ImagePickerService>(),
+        ),
+      )
     ];
   }
 }
